@@ -1,0 +1,23 @@
+{
+  "name": "kailib",
+  "version": "1.0.0",
+  "description": "Helper functions for apps",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/main.ts --no-source-maps --out-file W3wc.js",
+    "watch": "parcel src/main.ts --no-source-maps --out-file W3wc.js"
+  },
+  "browserslist": [
+    "since 2017-06"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^8.0.15",
+    "typescript": "^4.1.3",
+    "webpack": "^5.20.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {}
+}
