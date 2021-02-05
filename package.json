@@ -1,9 +1,9 @@
 {
   "name": "kailib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helper functions for apps",
   "private": true,
-  "main": "src/main.ts",
+  "main": "kailib.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build src/main.ts --no-source-maps --out-file W3wc.js",
