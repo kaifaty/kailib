@@ -17,7 +17,7 @@ function pad(value: number | string, n: number) {
         return string;
     }
 }
-function time2string(timestamp: number, type = "smart") {
+export function time2string(timestamp: number, type = "smart") {
     if(timestamp === 0){
         return '-';
     }
