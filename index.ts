@@ -1,14 +1,14 @@
-function parseDec(val:string | number) {
+export function parseDec(val:string | number) {
     if(typeof val === 'number'){
         return val;
     }
     val = val.replace(',','.');
     return parseFloat(val);
 }
-function firstUpper(text: string) {
+export function firstUpper(text: string) {
     return text[0].toUpperCase() + text.slice(1);
 }
-function pad(value: number | string, n: number) {
+export function pad(value: number | string, n: number) {
     let string = String(value);
     if(string.length < n){
         return "0".repeat(n - string.length) + string;
@@ -51,7 +51,7 @@ export function time2string(timestamp: number, type = "smart") {
     }
 
 }
-function hsl2rgb(h: number, s: number, l: number, hex = true) {
+export function hsl2rgb(h: number, s: number, l: number, hex = true) {
     let rgb: any = [];
     try{
         if(typeof h !== "number"){
@@ -120,7 +120,7 @@ function hsl2rgb(h: number, s: number, l: number, hex = true) {
         }
     }
 }
-function deepCopy (obj: any): any{
+export function deepCopy (obj: any): any{
     if(Array.isArray(obj)){
         let newArray = [];
         for(let i = 0; i < obj.length; i++){
@@ -154,10 +154,10 @@ function deepCopy (obj: any): any{
         return obj;
     }
 }
-function getDigit(number: number) {
+export function getDigit(number: number) {
     return Math.log(number) * Math.LOG10E | 0;
 }
-function ceilMinify(number: number, maxDigit:number) : [number, string]{
+export function ceilMinify(number: number, maxDigit:number) : [number, string]{
     let digit = getDigit(number);
     if(digit > maxDigit){
         let res = 0;
@@ -195,7 +195,7 @@ function ceilMinify(number: number, maxDigit:number) : [number, string]{
         return [number, ""];
     }
 }
-function syncObjects(source: any, target: any) {
+export function syncObjects(source: any, target: any) {
     for(let key in source){
         if(source.hasOwnProperty(key)){
             if(!target[key]){
@@ -208,7 +208,7 @@ function syncObjects(source: any, target: any) {
     }
     return target;
 }
-function copy2Clipboard(text = "_"){
+export function copy2Clipboard(text = "_"){
     let $input = document.createElement("input");
     $input.setAttribute("type", "text");
     $input.setAttribute("style", "position: absolute; z-index:-1");
@@ -218,7 +218,7 @@ function copy2Clipboard(text = "_"){
     document.execCommand("copy");
     $input.remove();
 }
-function getPeriod(period = "D"){
+export function getPeriod(period = "D"){
     if(period === "M1"){
         return 60;
     }
@@ -247,7 +247,7 @@ function getPeriod(period = "D"){
         return 60 * 10080;
     }
 }
-function avarage(array: Array<any>) {
+export function avarage(array: Array<any>) {
     if(!Array.isArray(array)){
         return false;
     }
