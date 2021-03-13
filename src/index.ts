@@ -340,7 +340,7 @@ export function format(text:string, args: any, remove = false){
             : remove ? "" : m
     })
 }
-function getValue(path: string, args: any) {
+export function getValue(path: string, args: any) {
     let arr = path.split(".");
     let current = args;
     for(let i = 0; i < arr.length; i ++){
