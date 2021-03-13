@@ -353,3 +353,6 @@ function getValue(path: string, args: any) {
     }
     return current;
 }
+export function submitValidation(pool: boolean[]): boolean{
+    return !pool.reduce((a, v) => a + +(!v), 0);
+}
