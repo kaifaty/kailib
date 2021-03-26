@@ -356,3 +356,18 @@ export function getValue(path: string, args: any) {
 export function submitValidation(pool: boolean[]): boolean{
     return !pool.reduce((a, v) => a + +(!v), 0);
 }
+export function debonce(value: number){
+    return function(target: any, prop: string, descriptor: PropertyDescriptor){
+        let lastCall = 0;
+        return {
+            ...descriptor,
+            value: function(...args: any[]){
+                 if(Date.now() - lastCall < value){
+                     return;
+                }
+                lastCall = Date.now();
+                return descriptor.value.call(this, args);
+            }
+        };
+    }
+}
