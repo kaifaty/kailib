@@ -400,7 +400,7 @@ export function getCookie(name: string): string{
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
     ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
+    return matches ? decodeURIComponent(matches[1]) : "";
 }
 export function deleteAllCookies(): void{
     let cookies = document.cookie.split(";");
@@ -410,4 +410,20 @@ export function deleteAllCookies(): void{
         let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
+}
+export function stringToHex(str: string){    
+    let result = "";
+    for (let i = 0; i < str.length; i++) {
+        const hex = str.charCodeAt(i).toString(16);
+        result += ("000" + hex).slice(-4);
+    }
+    return result
+}
+export function hexTostring(str: string){
+    let hexes = str.match(/.{1,4}/g) || [];
+    let back = "";
+    for(let j = 0; j < hexes.length; j++) {
+        back += String.fromCharCode(parseInt(hexes[j], 16));
+    }
+    return back;
 }
