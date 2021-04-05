@@ -416,7 +416,7 @@ export function stringToHex(str: string): string{
     for (let i = 0; i < str.length; i++) {
         result += str.charCodeAt(i).toString(16);
     }
-    return result
+    return "0x" + result;
 }
 export function hexTostring(str: string): string{
     let hexes = str.match(/.{1,4}/g) || [];
