@@ -414,8 +414,7 @@ export function deleteAllCookies(): void{
 export function stringToHex(str: string): string{    
     let result = "";
     for (let i = 0; i < str.length; i++) {
-        const hex = str.charCodeAt(i).toString(16);
-        result += ("000" + hex).slice(-4);
+        result += str.charCodeAt(i).toString(16);
     }
     return result
 }
