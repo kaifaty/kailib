@@ -2,12 +2,23 @@
   "name": "kailib",
   "version": "1.0.10",
   "description": "Helper functions for apps",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "typesVersions": {
+    "<3.8": {
+      "*": [
+        "ts3.4/*"
+      ]
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc" : "tsc"
   },
   "files": [
-    "/src/"
+    "/src/",
+    "/dist/"
   ],
   "homepage": "https://github.com/kaifaty/kailib#readme",
   "bugs": {
