@@ -411,7 +411,7 @@ export function deleteAllCookies(): void{
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
 }
-export function stringToHex(str: string){    
+export function stringToHex(str: string): string{    
     let result = "";
     for (let i = 0; i < str.length; i++) {
         const hex = str.charCodeAt(i).toString(16);
@@ -419,11 +419,15 @@ export function stringToHex(str: string){
     }
     return result
 }
-export function hexTostring(str: string){
+export function hexTostring(str: string): string{
     let hexes = str.match(/.{1,4}/g) || [];
     let back = "";
     for(let j = 0; j < hexes.length; j++) {
         back += String.fromCharCode(parseInt(hexes[j], 16));
     }
     return back;
+}
+export function getTopic(str: string): string{
+    const string = stringToHex(str);
+    return string + "0".repeat(66 - string.length);
 }
