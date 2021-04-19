@@ -40,3 +40,4 @@ export declare function deleteAllCookies(): void;
 export declare function stringToHex(str: string): string;
 export declare function hexTostring(str: string): string;
 export declare function getTopic(str: string): string;
+export declare function getScrollbarWidth(): number;
