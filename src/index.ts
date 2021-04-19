@@ -430,3 +430,6 @@ export function getTopic(str: string): string{
     const string = stringToHex(str);
     return string + "0".repeat(66 - string.length);
 }
+export function getScrollbarWidth(): number{
+    return window.innerWidth - document.body.clientWidth;
+}
