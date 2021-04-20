@@ -1,6 +1,6 @@
 {
   "name": "kailib",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Helper functions for apps",
   "main": "dist/index.js",
   "module": "dist/index.js",

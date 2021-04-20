@@ -409,3 +409,23 @@ export function getTopic(str) {
 export function getScrollbarWidth() {
     return window.innerWidth - document.body.clientWidth;
 }
+export const insertAfter = (array, index, item) => {
+    const res = [];
+    for (let i = 0; i < array.length; i++) {
+        res.push(array[i]);
+        if (index === i) {
+            res.push(item);
+        }
+    }
+    return res;
+};
+export const insertBefore = (array, index, item) => {
+    const res = [];
+    for (let i = 0; i < array.length; i++) {
+        if (index === i) {
+            res.push(item);
+        }
+        res.push(array[i]);
+    }
+    return res;
+};
