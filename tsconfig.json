@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "lib": ["es2016", "DOM"],
     "outDir": "./dist/",
     "noImplicitAny": true,
     "module": "es6",

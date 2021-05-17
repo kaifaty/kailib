@@ -284,9 +284,13 @@ export function getFormData(form) {
     let params = {};
     if (form instanceof HTMLFormElement) {
         for (let i = 0; i < form.elements.length; i++) {
-            let el = form.elements[i];
-            // @ts-ignore
-            if (!el.name)
+            const el = form.elements[i];
+            if (!(el instanceof HTMLInputElement) &&
+                !(el instanceof HTMLSelectElement) &&
+                !(el instanceof HTMLTextAreaElement)) {
+                continue;
+            }
+            if (!el.name || el.disabled)
                 continue;
             if (el instanceof HTMLInputElement && el.type === "radio" && el.checked) {
                 params[el.name] = el.value;
