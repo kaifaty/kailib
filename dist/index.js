@@ -295,11 +295,12 @@ export function getFormData(form) {
                 params[el.name] = el.files;
             }
             else if (el instanceof HTMLInputElement) {
-                if (el.type === "checkbox") {
+                if (el.type === "checkbox" || el.dataset.type === "checkbox") {
                     params[el.name] = el.checked;
                 }
                 else if (el.type === "number" ||
-                    ['decimal', 'numeric'].includes(el.getAttribute('inputmode'))) {
+                    ['decimal', 'numeric'].includes(el.getAttribute('inputmode'))
+                    || el.dataset.type === "number") {
                     params[el.name] = Number(el.value);
                 }
                 else {
