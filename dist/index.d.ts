@@ -18,9 +18,7 @@ export declare function isInt(value: unknown): boolean;
 export declare function isOTP(value: unknown): boolean;
 export declare function isEmail(email: unknown): boolean;
 export declare function isPassword(password: unknown): boolean;
-export declare function getFormData(form: HTMLFormElement): {
-    [key: string]: unknown;
-};
+export declare function getFormData(form: HTMLFormElement): Record<string, any>;
 export declare function randomInt(min: number, max: number): number;
 export declare function mobileAndTabletCheck(): boolean;
 export declare function format(text: string, args: any, remove?: boolean): string;

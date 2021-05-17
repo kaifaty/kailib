@@ -298,7 +298,8 @@ export function getFormData(form) {
                 if (el.type === "checkbox") {
                     params[el.name] = el.checked;
                 }
-                else if (el.type === "number") {
+                else if (el.type === "number" ||
+                    ['decimal', 'numeric'].includes(el.getAttribute('inputmode'))) {
                     params[el.name] = Number(el.value);
                 }
                 else {

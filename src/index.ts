@@ -291,7 +291,7 @@ export function isEmail(email: unknown) {
 export function isPassword(password: unknown) {
     return typeof password === "string" && password.length > 6;
 }
-export function getFormData(form: HTMLFormElement): {[key:string]: unknown} {
+export function getFormData(form: HTMLFormElement): Record<string, any> {
     let params:  {[key:string]: unknown} = {};
     if(form instanceof HTMLFormElement){
         for(let i = 0; i < form.elements.length; i ++) {
@@ -305,10 +305,13 @@ export function getFormData(form: HTMLFormElement): {[key:string]: unknown} {
                 params[el.name] = el.files;
             }
             else if(el instanceof HTMLInputElement){
-                if(el.type === "checkbox"){
+                if(el.type === "checkbox" || el.dataset.type === "checkbox"){
                     params[el.name] = el.checked;
                 }
-                else if(el.type === "number"){
+                else if(el.type === "number" || 
+                        ['decimal', 'numeric'].includes(el.getAttribute('inputmode')!)
+                        || el.dataset.type === "number"
+                ){
                     params[el.name] = Number(el.value);
                 }
                 else{
