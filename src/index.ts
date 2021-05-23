@@ -462,3 +462,7 @@ export const insertBefore = <T>(array: Array<T>, index: number, item: T) => {
     }
     return res;
 }
+export const getEventDataset = (e: Event, className: string, dataName: string): string | undefined => {
+    const el = (e.target as HTMLElement).closest(className);
+    if(el instanceof HTMLElement) return el.dataset[dataName];        
+}
