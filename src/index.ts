@@ -462,7 +462,41 @@ export const insertBefore = <T>(array: Array<T>, index: number, item: T) => {
     }
     return res;
 }
-export const getEventDataset = (e: Event, className: string, dataName: string): string | undefined => {
-    const el = (e.target as HTMLElement).closest(className);
+export const getEventDataset = (e: Event, selector: string, dataName: string): string | undefined => {
+    const el = (e.target as HTMLElement).closest(selector);
     if(el instanceof HTMLElement) return el.dataset[dataName];        
+}
+
+export const minifyString = (str: string, resultLength: number = 12): string => {
+    if(str.length <= resultLength){
+        return str;
+    }
+    return str.substring(0, resultLength / 2) 
+    + ".." 
+    + str.substring(str.length - resultLength / 2, str.length);
+}
+
+
+const calcSum = (str: string) => {
+    if(str.includes('+')){
+        const [num1, num2] = str.split('+');
+        return parseFloat(num1) + parseFloat(num2);
+    }
+    return parseFloat(str);
+}
+const calcValue = (str: string) =>  {
+    if(str.includes('calc(')){
+        const v = str.substr(0, str.length - 1).replace('calc(', '');
+        const [num1, num2] = v.split('*');
+        if(!num2){
+            return calcSum(num1)
+        }
+        return calcSum(num1) * calcSum(num2)
+    }
+    return parseFloat(str);
+}
+const HSLstringToRGB = (hslColor: string) => {
+    const str = hslColor.substr(0, hslColor.length - 1).replace('hsl(', '');
+    const values = str.split(',')
+    return hsl2rgb(calcValue(values[0]), calcValue(values[1]), calcValue(values[2]));    
 }

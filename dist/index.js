@@ -435,3 +435,39 @@ export const insertBefore = (array, index, item) => {
     }
     return res;
 };
+export const getEventDataset = (e, selector, dataName) => {
+    const el = e.target.closest(selector);
+    if (el instanceof HTMLElement)
+        return el.dataset[dataName];
+};
+export const minifyString = (str, resultLength = 12) => {
+    if (str.length <= resultLength) {
+        return str;
+    }
+    return str.substring(0, resultLength / 2)
+        + ".."
+        + str.substring(str.length - resultLength / 2, str.length);
+};
+const calcSum = (str) => {
+    if (str.includes('+')) {
+        const [num1, num2] = str.split('+');
+        return parseFloat(num1) + parseFloat(num2);
+    }
+    return parseFloat(str);
+};
+const calcValue = (str) => {
+    if (str.includes('calc(')) {
+        const v = str.substr(0, str.length - 1).replace('calc(', '');
+        const [num1, num2] = v.split('*');
+        if (!num2) {
+            return calcSum(num1);
+        }
+        return calcSum(num1) * calcSum(num2);
+    }
+    return parseFloat(str);
+};
+const HSLstringToRGB = (hslColor) => {
+    const str = hslColor.substr(0, hslColor.length - 1).replace('hsl(', '');
+    const values = str.split(',');
+    return hsl2rgb(calcValue(values[0]), calcValue(values[1]), calcValue(values[2]));
+};
