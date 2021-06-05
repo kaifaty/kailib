@@ -466,7 +466,7 @@ const calcValue = (str) => {
     }
     return parseFloat(str);
 };
-const HSLstringToRGB = (hslColor) => {
+export const HSLstringToRGB = (hslColor) => {
     const str = hslColor.substr(0, hslColor.length - 1).replace('hsl(', '');
     const values = str.split(',');
     return hsl2rgb(calcValue(values[0]), calcValue(values[1]), calcValue(values[2]));

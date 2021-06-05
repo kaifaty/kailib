@@ -467,13 +467,26 @@ export const getEventDataset = (e: Event, selector: string, dataName: string): s
     if(el instanceof HTMLElement) return el.dataset[dataName];        
 }
 
-export const minifyString = (str: string, resultLength: number = 12): string => {
+export const minifyString = (
+    str: string | undefined, 
+    resultLength: number = 12,
+    float: 'center' | 'left' | 'right' = 'center'
+): string => {
+    if(!str) return '';
     if(str.length <= resultLength){
         return str;
     }
-    return str.substring(0, resultLength / 2) 
-    + ".." 
-    + str.substring(str.length - resultLength / 2, str.length);
+    if(float === 'center'){
+        return str.substring(0, resultLength / 2) 
+        + ".." 
+        + str.substring(str.length - resultLength / 2, str.length);
+    }
+    else if(float === 'right'){
+        return ".." + str.substring(str.length - resultLength, str.length);
+    }
+    else{
+        return str.substring(0, resultLength) + "..";
+    }
 }
 
 
@@ -495,7 +508,7 @@ const calcValue = (str: string) =>  {
     }
     return parseFloat(str);
 }
-const HSLstringToRGB = (hslColor: string) => {
+export const HSLstringToRGB = (hslColor: string): string => {
     const str = hslColor.substr(0, hslColor.length - 1).replace('hsl(', '');
     const values = str.split(',')
     return hsl2rgb(calcValue(values[0]), calcValue(values[1]), calcValue(values[2]));    

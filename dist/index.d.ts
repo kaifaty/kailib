@@ -43,3 +43,4 @@ export declare const insertAfter: <T>(array: T[], index: number, item: T) => T[]
 export declare const insertBefore: <T>(array: T[], index: number, item: T) => T[];
 export declare const getEventDataset: (e: Event, selector: string, dataName: string) => string | undefined;
 export declare const minifyString: (str: string, resultLength?: number) => string;
+export declare const HSLstringToRGB: (hslColor: string) => string;
