@@ -271,7 +271,10 @@ export function isInt(value) {
     return typeof value === "number" && Math.floor(value) === value;
 }
 export function isOTP(value) {
-    return typeof value === "number" && value.toString().length === 6;
+    if (typeof value !== "string") {
+        value = value.toString();
+    }
+    return value.length === 6;
 }
 export function isEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -440,13 +443,23 @@ export const getEventDataset = (e, selector, dataName) => {
     if (el instanceof HTMLElement)
         return el.dataset[dataName];
 };
-export const minifyString = (str, resultLength = 12) => {
+export const minifyString = (str, resultLength = 12, float = 'center') => {
+    if (!str)
+        return '';
     if (str.length <= resultLength) {
         return str;
     }
-    return str.substring(0, resultLength / 2)
-        + ".."
-        + str.substring(str.length - resultLength / 2, str.length);
+    if (float === 'center') {
+        return str.substring(0, resultLength / 2)
+            + ".."
+            + str.substring(str.length - resultLength / 2, str.length);
+    }
+    else if (float === 'right') {
+        return ".." + str.substring(str.length - resultLength, str.length);
+    }
+    else {
+        return str.substring(0, resultLength) + "..";
+    }
 };
 const calcSum = (str) => {
     if (str.includes('+')) {

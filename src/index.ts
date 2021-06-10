@@ -281,8 +281,11 @@ export function urlEncode(params: {[key:string]: any}): string{
 export function isInt(value: unknown): boolean{
     return typeof value === "number" && Math.floor(value) === value;
 }
-export function isOTP(value: unknown): boolean{
-    return typeof value === "number" && value.toString().length === 6;
+export function isOTP(value: string | number | boolean): boolean{
+    if(typeof value !== "string"){
+        value = value.toString();
+    }
+    return value.length === 6;
 }
 export function isEmail(email: unknown) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

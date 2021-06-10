@@ -15,7 +15,7 @@ export declare function urlEncode(params: {
     [key: string]: any;
 }): string;
 export declare function isInt(value: unknown): boolean;
-export declare function isOTP(value: unknown): boolean;
+export declare function isOTP(value: string | number | boolean): boolean;
 export declare function isEmail(email: unknown): boolean;
 export declare function isPassword(password: unknown): boolean;
 export declare function getFormData(form: HTMLFormElement): Record<string, any>;
@@ -42,5 +42,5 @@ export declare function getScrollbarWidth(): number;
 export declare const insertAfter: <T>(array: T[], index: number, item: T) => T[];
 export declare const insertBefore: <T>(array: T[], index: number, item: T) => T[];
 export declare const getEventDataset: (e: Event, selector: string, dataName: string) => string | undefined;
-export declare const minifyString: (str: string, resultLength?: number) => string;
+export declare const minifyString: (str: string | undefined, resultLength?: number, float?: 'center' | 'left' | 'right') => string;
 export declare const HSLstringToRGB: (hslColor: string) => string;
